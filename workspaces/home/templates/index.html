@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Validação de Entrada de Dados</title>
+
+        <meta name="description" content="Validação de Entrada de Dados" />
+        <meta name="author" content="Alcindo Schleder" />
+
+        <link
+          href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+          rel="stylesheet"
+        />
+        <!-- <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" /> -->
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+                <div class="col-sm-8 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                    <form id="formZipCode" action="/zipcode" role="form" method="POST">
+                        {{ form.csrf_token }}
+                        <div class="form-group">
+                            <label for="zip_code">Código:</label>
+                            {{ form.zip_code(class="form-control", placeholder="type zip code") }}
+                            {% if form.errors.zip_code %}
+                            <div id="msgAlert" class="alert alert-danger" role="alert">
+                                <ul>
+                                    {% for e in form.errors.zip_code %}
+                                    <li>{{ e }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <!-- <input type="number" class="form-control" id="code"/> -->
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Pesquisar</button>
+                    </form>
+                  <div id="msgData" class="alert alert-success" role="alert"></div>
+                </div>
+                <div class="col-sm-2 col-sm-3 col-md-4 col-lg-4 col-xl-4"></div>
+            </div>
+        </div>
+
+        <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/tether.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script>
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        </script>
+        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    </body>
+</html>
