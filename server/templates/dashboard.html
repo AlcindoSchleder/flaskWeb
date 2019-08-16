@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Exemplo de Dashboard</title>
+
+        <meta name="description" content="Validação de Entrada de Dados" />
+        <meta name="author" content="Alcindo Schleder" />
+
+        <link
+          href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+          rel="stylesheet"
+        />
+        <!-- <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" /> -->
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-1 col-lg-2 col-xl-2"></div>
+                <div class="col-sm-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
+                    <h3>Gráfico de Barras</h3>
+                    <div class="chart" id="bargraph">
+                        <script>
+                            var graphs = {{plot | safe}};
+                            Plotly.plot('bargraph',graphs,{});
+                        </script>
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-2 col-xl-2"></div>
+            </div>
+        </div>
+
+        <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/tether.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    </body>
+</html>

@@ -31,9 +31,8 @@ class ICityServer(OperationResults):
         self.setEnvironmentConfig()
 
         # Create all blueprint apps 
-        self.icity_bp = Blueprint('home', __name__, 
-            template_folder='../workspaces/home/templates'
-        )
+        self.icity_bp = Blueprint('home', __name__)
+        self.dash_bp = Blueprint('dasboard', __name__)
 
         # Create a swagger api from home app
         self.icity_api = Api(
