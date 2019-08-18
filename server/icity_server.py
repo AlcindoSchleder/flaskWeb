@@ -30,7 +30,7 @@ class ICityServer(OperationResults):
         self.icity_app.config['FLASK_ENV'] = os.environ.get("FLASK_ENV", default="development")
         self.setEnvironmentConfig()
 
-        # Create all blueprint apps 
+        # Create all blueprint apps
         self.icity_bp = Blueprint('home', __name__)
         self.dash_bp = Blueprint('dasboard', __name__)
 

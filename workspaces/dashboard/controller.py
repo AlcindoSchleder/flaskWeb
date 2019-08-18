@@ -17,7 +17,6 @@ class DashRoutes(BaseRoutes):
         BarChart = Plot.create_BarChart()
         return render_template('dashboard.html', plot=BarChart)
     
-
 icityServer.icity_api.add_namespace(ns, path=BaseRoutes.PATH_API)
 
 api_functions = DashRoutes.as_view(BaseRoutes.API_BASE_NAME)
