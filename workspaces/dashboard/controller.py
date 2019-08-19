@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, redirect, flash, url_for, jsonify
+from flask import render_template, redirect, flash, url_for, jsonify, make_response
 from flask_restplus import Namespace
 from server import icityServer
 from workspaces.dashboard import BaseRoutes
@@ -15,7 +15,8 @@ class DashRoutes(BaseRoutes):
     def get(self):
         self.resultStatusCode = 200
         BarChart = Plot.create_BarChart()
-        return render_template('dashboard.html', plot=BarChart)
+        headers = {'Content-Type': 'text/html'}
+        return make_response(render_template('dashboard.html', plot=BarChart),200,headers)
     
 icityServer.icity_api.add_namespace(ns, path=BaseRoutes.PATH_API)
 

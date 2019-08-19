@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, redirect, flash, url_for, jsonify
+from flask import render_template, redirect, flash, url_for, jsonify, make_response
 from flask_restplus import Namespace
 from server import icityServer
 from workspaces.home import BaseRoutes
@@ -19,7 +19,9 @@ class HomeRoutes(BaseRoutes):
         self.resultStatusCode = 200
         if (zip_code is None):
             form = GetZipCode()
-            return render_template('index.html', form=form)
+            headers = {'Content-Type': 'text/html'}
+            return make_response(render_template('index.html', form=form),200,headers)
+            # return render_template('index.html', form=form)
         else:
             Val = ValidationInput()
             return jsonify(Val.CheckStringValue(zip_code))

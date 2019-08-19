@@ -17,24 +17,8 @@ from common.helpers.operationResults import OperationResults
 
 class InterfaceRoutes(MethodView, OperationResults):
 
-    PAGE = reqparse.RequestParser()
-    PAGE.add_argument('start', type=int, default=1, help='Página inicial da lista')
-    PAGE.add_argument(
-        'limit', 
-        type=int, 
-        default=20, 
-        help='Registros por paǵina', 
-        choices=[0, 10, 20, 30, 40, 50]
-    )
-
     def __init__(self, *args, **kwargs):
         super(InterfaceRoutes, self).__init__(args, kwargs)
-        self.result['page'] = {
-            'count': 0,
-            'start': 0,
-            'limit': 0,
-            'url': '/'
-        }
         self.db = None
 
     def get(self):
