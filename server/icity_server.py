@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from flask import Flask
+from flask import Flask, Blueprint
 from flask_restplus import Api
 from common import COMMON_DIRECTORY
 from common.helpers.operationResults import OperationResults
@@ -30,9 +30,13 @@ class ICityServer(OperationResults):
         self.icity_app.config['FLASK_ENV'] = os.environ.get("FLASK_ENV", default="development")
         self.setEnvironmentConfig()
 
+        # Create all blueprint apps 
+        self.icity_bp = Blueprint('home', __name__)
+        self.icity_dsh_bp = Blueprint('dashboard', __name__)
+
         # Create a swagger api from home app
         self.icity_api = Api(
-            app = self.icity_app,
+            app = self.icity_bp,
             version = "1.0",
             title = "Vocatio Telecom API",
             description = "Api para uso como Fonte de Estudos",
